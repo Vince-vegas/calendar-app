@@ -8,6 +8,7 @@ const CardMeeting = ({
   month,
   date,
   status,
+  onOpenModal,
 }) => {
   return (
     <div className='card-meeting'>
@@ -18,7 +19,9 @@ const CardMeeting = ({
       <h1>Title: {title}</h1>
       <p>Description: {description}</p>
 
-      <button className='btn-edit'>Edit</button>
+      <button onClick={onOpenModal} className='btn-edit'>
+        Edit
+      </button>
       <button onClick={onDeleteMeeting}>Delete</button>
     </div>
   );

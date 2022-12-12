@@ -1,9 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../store/actionTypes/actionTypes';
 
 const EditMeetingModal = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
+
+  const calendar = useSelector((item) => item.calendar);
+  const openModal = useSelector((item) => item.meetings.openModal);
+
+  const dispatch = useDispatch();
+
+  let { display_year, display_month, display_date } = calendar;
 
   const ref = useRef(null);
 
@@ -31,18 +40,28 @@ const EditMeetingModal = () => {
     setStatus('pending');
   };
 
+  const onCloseModal = () => {
+    dispatch({ type: actions.TOGGLE_MEETING_MODAL });
+  };
+
   useEffect(() => {
-    console.log(1);
+    ref.current.focus();
   }, []);
 
   return (
-    <div className='modal-container'>
-      <div className='add-meeting-holder'>
+    <div className={`modal-container ${openModal ? 'd-block' : 'd-none'}`}>
+      <div className='modal-holder'>
         <div className='exit-modal'>
-          <button>exit-modal</button>
+          <button onClick={onCloseModal}>exit-modal</button>
         </div>
+
+        <h3 className='date'>
+          {calendar.months[display_month]} {display_date}, {display_year}
+        </h3>
+
         <form className='add-meeting-form' onSubmit={handleSubmit}>
           <div className='form-item'>
+            <h4>Title</h4>
             <input
               type='text'
               name='title'
@@ -52,12 +71,11 @@ const EditMeetingModal = () => {
               onChange={handleInput}
             />
           </div>
+
           <div className='form-item'>
+            <h4>Description</h4>
             <textarea
               name='description'
-              id=''
-              cols='30'
-              rows='10'
               placeholder='Add Description'
               value={description}
               onChange={handleTextarea}
@@ -72,7 +90,9 @@ const EditMeetingModal = () => {
             </select>
           </div>
 
-          <button type='submit'>Save Meeting</button>
+          <button className='btn-submit' type='submit'>
+            Save Meeting
+          </button>
         </form>
       </div>
     </div>

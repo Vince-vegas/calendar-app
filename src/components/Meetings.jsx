@@ -12,6 +12,10 @@ const Meetings = () => {
 
   let { current_sorted } = meetings;
 
+  const onOpenModal = () => {
+    dispatch({ type: actions.TOGGLE_MEETING_MODAL });
+  };
+
   const onDeleteCard = (id) => {
     fetch(`http://localhost:3500/meetings/${id}`, {
       method: 'DELETE',
