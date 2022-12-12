@@ -14,10 +14,6 @@ const Routes = () => {
         <Route path='/calendar/:year/:month/:date' component={CalendarPage} />
 
         <Route exact path='/404' component={NotFoundPage} />
-
-        {/* <Route path='*'>
-          <Redirect to='/calendar' />
-        </Route> */}
       </Switch>
     </Fragment>
   );
