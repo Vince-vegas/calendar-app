@@ -17,4 +17,4 @@ npm run json:server
 - ReactJS/Hooks
 - Redux
 - React Router
-- REST API
+- REST API (json-server)
