@@ -14,7 +14,8 @@ npm run json:server
 
 ## Technologies
 
-- ReactJS/Hooks
+- ReactJS
+- React Hooks
 - Redux
 - React Router
 - REST API (json-server)
