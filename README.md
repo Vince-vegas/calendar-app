@@ -19,3 +19,4 @@ npm run json:server
 - Redux
 - React Router
 - REST API (json-server)
+- Sass
